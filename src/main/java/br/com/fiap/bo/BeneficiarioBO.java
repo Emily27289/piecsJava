@@ -36,8 +36,7 @@ public class BeneficiarioBO {
         return beneficiarioDAO.buscarPorId(idBeneficiario);
     }
 
-    public List<BeneficiarioTO> listarTodosBeneficiarios() throws SQLException {
-        return beneficiarioDAO.listarTodos();
+    public List<BeneficiarioTO> findAll() throws SQLException {
+        return beneficiarioDAO.findAll(); // Chamando o método findAll da DAO
     }
 }
-

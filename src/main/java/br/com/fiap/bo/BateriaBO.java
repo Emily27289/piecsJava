@@ -38,8 +38,7 @@ public class BateriaBO {
         return bateriaDAO.buscarPorId(idBateria);
     }
 
-    public List<BateriaTO> listarTodasBaterias() throws SQLException {
-        return bateriaDAO.listarTodos();
+    public List<BateriaTO> findAll() throws SQLException {
+        return bateriaDAO.findAll(); // Chamando o método findAll da DAO
     }
 }
-

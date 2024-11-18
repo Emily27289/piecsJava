@@ -87,8 +87,8 @@ public class EnderecoBO {
         return enderecoDAO.buscarPorId(id);
     }
 
-    public List<EnderecoTO> buscarTodosEnderecos() throws SQLException {
-        return enderecoDAO.buscarTodos();
+    public List<EnderecoTO> findAll() throws SQLException {
+        return enderecoDAO.findAll(); // Chamando o método findAll da DAO
     }
 
     public boolean removerEndereco(int id) throws SQLException {
@@ -104,4 +104,3 @@ public class EnderecoBO {
         return enderecoDAO.deletarEndereco(id);
     }
 }
-

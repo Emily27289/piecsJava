@@ -15,7 +15,6 @@ public class CompradorBO {
     }
 
     public void adicionarComprador(CompradorTO comprador) throws SQLException {
-
         if (comprador.getNomeComprador() == null || comprador.getNomeComprador().isEmpty()) {
             throw new IllegalArgumentException("O nome do comprador é obrigatório.");
         }
@@ -33,7 +32,6 @@ public class CompradorBO {
     }
 
     public void atualizarComprador(CompradorTO comprador) throws SQLException {
-
         if (comprador.getNomeComprador() == null || comprador.getNomeComprador().isEmpty()) {
             throw new IllegalArgumentException("O nome do comprador é obrigatório.");
         }
@@ -58,8 +56,7 @@ public class CompradorBO {
         return compradorDAO.buscarPorId(idComprador);
     }
 
-    public List<CompradorTO> listarTodosCompradores() throws SQLException {
-        return compradorDAO.listarTodos();
+    public List<CompradorTO> findAll() throws SQLException {
+        return compradorDAO.findAll(); // Chamando o método findAll da DAO
     }
 }
-

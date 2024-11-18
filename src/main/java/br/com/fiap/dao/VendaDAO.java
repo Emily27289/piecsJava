@@ -7,50 +7,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VendaDAO {
+
     private Connection connection;
 
     public VendaDAO(Connection connection) {
         this.connection = connection;
     }
 
-    public void inserir(VendaTO venda) throws SQLException {
+    public boolean inserir(VendaTO venda) throws SQLException {
         String sql = "INSERT INTO T_PIECS_VENDA (preco, qt_energia, id_comprador) VALUES (?, ?, ?)";
-        try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setDouble(1, venda.getPreco());
             stmt.setInt(2, venda.getQtEnergia());
             stmt.setInt(3, venda.getIdComprador());
-            stmt.executeUpdate();
-            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    venda.setIdVenda(generatedKeys.getInt(1));
-                }
-            }
+            return stmt.executeUpdate() > 0;
         }
     }
 
-    public void atualizar(VendaTO venda) throws SQLException {
+    public boolean atualizar(VendaTO venda) throws SQLException {
         String sql = "UPDATE T_PIECS_VENDA SET preco = ?, qt_energia = ?, id_comprador = ? WHERE id_venda = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setDouble(1, venda.getPreco());
             stmt.setInt(2, venda.getQtEnergia());
             stmt.setInt(3, venda.getIdComprador());
             stmt.setInt(4, venda.getIdVenda());
-            stmt.executeUpdate();
+            return stmt.executeUpdate() > 0;
         }
     }
 
-    public void deletar(int idVenda) throws SQLException {
-        String sql = "DELETE FROM T_PIECS_VENDA WHERE id_venda = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, idVenda);
-            stmt.executeUpdate();
-        }
-    }
-
-    public VendaTO buscarPorId(int idVenda) throws SQLException {
+    public VendaTO buscarPorId(int id) throws SQLException {
         String sql = "SELECT * FROM T_PIECS_VENDA WHERE id_venda = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, idVenda);
+            stmt.setInt(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     VendaTO venda = new VendaTO();
@@ -65,8 +53,16 @@ public class VendaDAO {
         return null;
     }
 
-    public List<VendaTO> listarTodos() throws SQLException {
-        List<VendaTO> lista = new ArrayList<>();
+    public boolean deletar(int id) throws SQLException {
+        String sql = "DELETE FROM T_PIECS_VENDA WHERE id_venda = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            return stmt.executeUpdate() > 0;
+        }
+    }
+
+    public List<VendaTO> findAll() throws SQLException {
+        List<VendaTO> vendas = new ArrayList<>();
         String sql = "SELECT * FROM T_PIECS_VENDA";
         try (Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
@@ -76,10 +72,9 @@ public class VendaDAO {
                 venda.setPreco(rs.getDouble("preco"));
                 venda.setQtEnergia(rs.getInt("qt_energia"));
                 venda.setIdComprador(rs.getInt("id_comprador"));
-                lista.add(venda);
+                vendas.add(venda);
             }
         }
-        return lista;
+        return vendas;
     }
 }
-

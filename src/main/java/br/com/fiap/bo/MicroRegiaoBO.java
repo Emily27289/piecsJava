@@ -34,8 +34,7 @@ public class MicroRegiaoBO {
         return microRegiaoDAO.buscarPorId(idMicroRegiao);
     }
 
-    public List<MicroRegiaoTO> listarTodasMicroRegioes() throws SQLException {
-        return microRegiaoDAO.listarTodos();
+    public List<MicroRegiaoTO> findAll() throws SQLException {
+        return microRegiaoDAO.findAll(); // Chamando o método findAll da DAO
     }
 }
-

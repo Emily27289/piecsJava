@@ -1,4 +1,4 @@
-package br.com.fiap;
+package br.com.fiap.resource;
 
 import javax.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;

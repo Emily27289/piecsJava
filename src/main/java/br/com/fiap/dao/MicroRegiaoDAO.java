@@ -68,7 +68,7 @@ public class MicroRegiaoDAO {
         return null;
     }
 
-    public List<MicroRegiaoTO> listarTodos() throws SQLException {
+    public List<MicroRegiaoTO> findAll() throws SQLException {
         List<MicroRegiaoTO> lista = new ArrayList<>();
         String sql = "SELECT * FROM T_PIECS_MICRO_REGIAO";
         try (Statement stmt = connection.createStatement();
@@ -86,4 +86,3 @@ public class MicroRegiaoDAO {
         return lista;
     }
 }
-

@@ -71,7 +71,7 @@ public class CompraDAO {
         return null;
     }
 
-    public List<CompraTO> listarTodos() throws SQLException {
+    public List<CompraTO> findAll() throws SQLException {
         List<CompraTO> lista = new ArrayList<>();
         String sql = "SELECT * FROM T_PIECS_COMPRA";
         try (Statement stmt = connection.createStatement();
@@ -90,4 +90,3 @@ public class CompraDAO {
         return lista;
     }
 }
-

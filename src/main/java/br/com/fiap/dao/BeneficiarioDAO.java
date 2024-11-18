@@ -71,7 +71,7 @@ public class BeneficiarioDAO {
         return null;
     }
 
-    public List<BeneficiarioTO> listarTodos() throws SQLException {
+    public List<BeneficiarioTO> findAll() throws SQLException {
         List<BeneficiarioTO> lista = new ArrayList<>();
         String sql = "SELECT * FROM T_PIECS_BENEFICIARIOS";
         try (Statement stmt = connection.createStatement();
@@ -90,4 +90,3 @@ public class BeneficiarioDAO {
         return lista;
     }
 }
-

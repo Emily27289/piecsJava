@@ -14,7 +14,6 @@ public class EnderecoDAO {
         this.connection = connection;
     }
 
-    // Método para inserir um novo endereço
     public boolean inserirEndereco(EnderecoTO endereco) throws SQLException {
         String sql = "INSERT INTO T_PIECS_ENDERECO (cep, rua, bairro, cidade, estado, numero) VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -38,7 +37,6 @@ public class EnderecoDAO {
         return false;
     }
 
-    // Método para buscar um endereço pelo ID
     public EnderecoTO buscarPorId(int id) throws SQLException {
         String sql = "SELECT * FROM T_PIECS_ENDERECO WHERE id_endereco = ?";
         EnderecoTO endereco = null;
@@ -54,8 +52,7 @@ public class EnderecoDAO {
         return endereco;
     }
 
-    // Método para buscar todos os endereços
-    public List<EnderecoTO> buscarTodos() throws SQLException {
+    public List<EnderecoTO> findAll() throws SQLException {
         String sql = "SELECT * FROM T_PIECS_ENDERECO";
         List<EnderecoTO> enderecos = new ArrayList<>();
 
@@ -69,7 +66,6 @@ public class EnderecoDAO {
         return enderecos;
     }
 
-    // Método para atualizar um endereço
     public boolean atualizarEndereco(EnderecoTO endereco) throws SQLException {
         String sql = "UPDATE T_PIECS_ENDERECO SET cep = ?, rua = ?, bairro = ?, cidade = ?, estado = ?, numero = ? WHERE id_endereco = ?";
 
@@ -86,7 +82,6 @@ public class EnderecoDAO {
         }
     }
 
-    // Método para deletar um endereço pelo ID
     public boolean deletarEndereco(int id) throws SQLException {
         String sql = "DELETE FROM T_PIECS_ENDERECO WHERE id_endereco = ?";
 
@@ -96,7 +91,6 @@ public class EnderecoDAO {
         }
     }
 
-    // Método utilitário para mapear um ResultSet para um objeto EnderecoTO
     private EnderecoTO mapResultSetToEndereco(ResultSet rs) throws SQLException {
         EnderecoTO endereco = new EnderecoTO();
         endereco.setIdEndereco(rs.getInt("id_endereco"));
@@ -109,4 +103,3 @@ public class EnderecoDAO {
         return endereco;
     }
 }
-

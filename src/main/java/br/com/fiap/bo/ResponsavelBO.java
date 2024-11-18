@@ -69,8 +69,8 @@ public class ResponsavelBO {
         return responsavelDAO.buscarPorId(id);
     }
 
-    public List<ResponsavelTO> buscarTodosResponsaveis() throws SQLException {
-        return responsavelDAO.buscarTodos();
+    public List<ResponsavelTO> findAll() throws SQLException {
+        return responsavelDAO.findAll(); // Chamando o método findAll da DAO
     }
 
     public boolean removerResponsavel(int id) throws SQLException {
@@ -86,4 +86,3 @@ public class ResponsavelBO {
         return responsavelDAO.deletarResponsavel(id);
     }
 }
-

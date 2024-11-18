@@ -14,7 +14,6 @@ public class ResponsavelDAO {
         this.connection = connection;
     }
 
-    // Método para inserir um novo responsável
     public boolean inserirResponsavel(ResponsavelTO responsavel) throws SQLException {
         String sql = "INSERT INTO T_PIECS_RESPONSAVEL (nm_cliente, dt_nascimento, cpf_cnpj, email, senha, qt_armazenada_total) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
@@ -39,7 +38,6 @@ public class ResponsavelDAO {
         return false;
     }
 
-    // Método para buscar um responsável pelo ID
     public ResponsavelTO buscarPorId(int id) throws SQLException {
         String sql = "SELECT * FROM T_PIECS_RESPONSAVEL WHERE id_responsavel = ?";
         ResponsavelTO responsavel = null;
@@ -55,8 +53,7 @@ public class ResponsavelDAO {
         return responsavel;
     }
 
-    // Método para buscar todos os responsáveis
-    public List<ResponsavelTO> buscarTodos() throws SQLException {
+    public List<ResponsavelTO> findAll() throws SQLException {
         String sql = "SELECT * FROM T_PIECS_RESPONSAVEL";
         List<ResponsavelTO> responsaveis = new ArrayList<>();
 
@@ -70,7 +67,6 @@ public class ResponsavelDAO {
         return responsaveis;
     }
 
-    // Método para atualizar um responsável
     public boolean atualizarResponsavel(ResponsavelTO responsavel) throws SQLException {
         String sql = "UPDATE T_PIECS_RESPONSAVEL SET nm_cliente = ?, dt_nascimento = ?, cpf_cnpj = ?, " +
                 "email = ?, senha = ?, qt_armazenada_total = ? WHERE id_responsavel = ?";
@@ -88,7 +84,6 @@ public class ResponsavelDAO {
         }
     }
 
-    // Método para deletar um responsável pelo ID
     public boolean deletarResponsavel(int id) throws SQLException {
         String sql = "DELETE FROM T_PIECS_RESPONSAVEL WHERE id_responsavel = ?";
 
@@ -98,7 +93,6 @@ public class ResponsavelDAO {
         }
     }
 
-    // Método para buscar um responsável pelo CPF/CNPJ
     public ResponsavelTO buscarPorCpfCnpj(String cpfCnpj) throws SQLException {
         String sql = "SELECT * FROM T_PIECS_RESPONSAVEL WHERE cpf_cnpj = ?";
         ResponsavelTO responsavel = null;
@@ -114,8 +108,6 @@ public class ResponsavelDAO {
         return responsavel;
     }
 
-
-    // Método utilitário para mapear um ResultSet para um objeto ResponsavelTO
     private ResponsavelTO mapResultSetToResponsavel(ResultSet rs) throws SQLException {
         ResponsavelTO responsavel = new ResponsavelTO();
         responsavel.setIdResponsavel(rs.getInt("id_responsavel"));
@@ -128,4 +120,3 @@ public class ResponsavelDAO {
         return responsavel;
     }
 }
-

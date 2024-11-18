@@ -65,7 +65,7 @@ public class BateriaDAO {
         return null;
     }
 
-    public List<BateriaTO> listarTodos() throws SQLException {
+    public List<BateriaTO> findAll() throws SQLException {
         List<BateriaTO> lista = new ArrayList<>();
         String sql = "SELECT * FROM T_PIECS_BATERIA";
         try (Statement stmt = connection.createStatement();
@@ -82,4 +82,3 @@ public class BateriaDAO {
         return lista;
     }
 }
-

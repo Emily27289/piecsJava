@@ -15,7 +15,6 @@ public class CompraBO {
     }
 
     public void adicionarCompra(CompraTO compra) throws SQLException {
-
         if (compra.getPreco() <= 0) {
             throw new IllegalArgumentException("O preço deve ser maior que zero.");
         }
@@ -30,7 +29,6 @@ public class CompraBO {
     }
 
     public void atualizarCompra(CompraTO compra) throws SQLException {
-
         if (compra.getPreco() <= 0) {
             throw new IllegalArgumentException("O preço deve ser maior que zero.");
         }
@@ -52,8 +50,7 @@ public class CompraBO {
         return compraDAO.buscarPorId(idCompra);
     }
 
-    public List<CompraTO> listarTodasCompras() throws SQLException {
-        return compraDAO.listarTodos();
+    public List<CompraTO> findAll() throws SQLException {
+        return compraDAO.findAll(); // Chamando o método findAll da DAO
     }
 }
-
